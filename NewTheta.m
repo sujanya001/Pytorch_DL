@@ -1,0 +1,86 @@
+f = 3584;
+
+x_1 = [436;1971;f];
+x_2 = [2807;2425;f];
+x_3 = [1655;2319;f];
+x_4 = [2954;2315;f];
+x_5 = [1834;2617;f];
+x_6 = [1892;2918;f];
+x_7 = [1527;3220;f];
+x_8 = [1707;3311;f];
+x_9 = [2803;3050;f];
+x_10 = [1737;2472;f];
+
+xn_1 = x_1/norm(x_1);
+xn_2 = x_2/norm(x_2);
+xn_3 = x_3/norm(x_3);
+xn_4 = x_4/norm(x_4);
+xn_5 = x_5/norm(x_5);
+xn_6 = x_6/norm(x_6);
+xn_7 = x_7/norm(x_7);
+xn_8 = x_8/norm(x_8);
+xn_9 = x_9/norm(x_9);
+xn_10 = x_10/norm(x_10);
+
+x_M = (x_1 + x_2 + x_3 + x_4 + x_5 + x_6 + x_7 + x_8 + x_9 + x_10)/10;
+x_prime_1 = x_1 - x_M;
+x_prime_2 = x_2 - x_M;
+x_prime_3 = x_3 - x_M;
+x_prime_4 = x_4 - x_M;
+x_prime_5 = x_5 - x_M;
+x_prime_6 = x_6 - x_M;
+x_prime_7 = x_7 - x_M;
+x_prime_8 = x_8 - x_M;
+x_prime_9 = x_9 - x_M;
+x_prime_10 = x_10 - x_M;
+
+p_1 = [899;1938;f];
+p_2 = [3288;2422;f];
+p_3 = [2066;2292;f];
+p_4 = [3444;2313;f];
+p_5 = [2247;2601;f];
+p_6 = [2300;2906;f];
+p_7 = [1928;3191;f];
+p_8 = [2109;3292;f];
+p_9 = [3269;3079;f];
+p_10 = [2149;2449;f];
+
+pn_1 = p_1/norm(p_1);
+pn_2 = p_2/norm(p_2);
+pn_3 = p_3/norm(p_3);
+pn_4 = p_4/norm(p_4);
+pn_5 = p_5/norm(p_5);
+pn_6 = p_6/norm(p_6);
+pn_7 = p_7/norm(p_7);
+pn_8 = p_8/norm(p_8);
+pn_9 = p_9/norm(p_9);
+pn_10 = p_10/norm(p_10);
+
+p_M = (p_1 + p_2 + p_3 + p_4 + p_5 + p_6 + p_7 + p_8 + p_9 + p_10)/10;
+p_prime_1 = p_1 - p_M;
+p_prime_2 = p_2 - p_M;
+p_prime_3 = p_3 - p_M;
+p_prime_4 = p_4 - p_M;
+p_prime_5 = p_5 - p_M;
+p_prime_6 = p_6 - p_M;
+p_prime_7 = p_7 - p_M;
+p_prime_8 = p_8 - p_M;
+p_prime_9 = p_9 - p_M;
+p_prime_10 = p_10 - p_M;
+
+w_prime_1 = x_prime_1.*p_prime_1';
+w_prime_2 = x_prime_2.*p_prime_2';
+w_prime_3 = x_prime_3.*p_prime_3';
+w_prime_4 = x_prime_4.*p_prime_4';
+w_prime_5 = x_prime_5.*p_prime_5';
+w_prime_6 = x_prime_6.*p_prime_6';
+w_prime_7 = x_prime_7.*p_prime_7';
+w_prime_8 = x_prime_8.*p_prime_8';
+w_prime_9 = x_prime_9.*p_prime_9';
+w_prime_10 = x_prime_10.*p_prime_10';
+w_prime = w_prime_1 + w_prime_2 + w_prime_3 + w_prime_4 + w_prime_5 + w_prime_6 + w_prime_7 + w_prime_8 + w_prime_9 + w_prime_10;
+[U,S,V] = svd(w_prime);
+R = U.*V';
+theta = (acos((trace(R)-1)/2))*(180/pi)
+theta_ground = 7
+error_percent = (theta-theta_ground)*100/theta
